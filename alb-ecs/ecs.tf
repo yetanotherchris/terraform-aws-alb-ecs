@@ -1,30 +1,4 @@
 ## ECS
-
-variable "ecs_cluster_name" {
-  description = ""
-  default = "letmein"
-}
-
-variable "ecs_service_name" {
-  description = ""
-  default = "letmein"
-}
-
-variable "ecs_docker_image" {
-  description = ""
-  default = "letmein:latest"
-}
-
-variable "ecs_container_name" {
-  description = ""
-  default = "letmein"
-}
-
-variable "ecs_container_port_number" {
-  description = "Should match the task definition"
-  default = "5000"
-}
-
 resource "aws_ecs_cluster" "main" {
   name = "${var.ecs_cluster_name}"
 }

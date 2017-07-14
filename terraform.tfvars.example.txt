@@ -1,0 +1,17 @@
+aws_access_key="<VALUE HERE>"
+aws_secret_key="<VALUE HERE>"
+aws_region = "eu-west-1"
+
+aws_vpc_id="vpc-<VALUE HERE>"
+aws_subnet_a_id="subnet-<VALUE HERE>"
+aws_subnet_b_id="subnet-<VALUE HERE>"
+admin_cidr_ingress = "0.0.0.0/0"
+
+key_name="terraform"
+app_name="Ghost-Blog"
+
+ecs_cluster_name = "Ghost-Blog"
+ecs_service_name = "Ghost-Blog"
+ecs_docker_image = "ghost:latest"
+ecs_container_name = "Ghost-Blog"
+ecs_container_port_number = "8080"

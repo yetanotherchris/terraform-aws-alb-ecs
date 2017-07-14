@@ -29,6 +29,26 @@ variable "app_name" {
   description = "The name of this application, e.g. My-Ghost."
 }
 
+variable "ecs_cluster_name" {
+  description = "The name of the cluster in ECS."
+}
+
+variable "ecs_service_name" {
+  description = "The name of the service in the ECS cluster, usually the same as the app name."
+}
+
+variable "ecs_docker_image" {
+  description = "The docker image, and version for the task definition. e.g. postgres:latest"
+}
+
+variable "ecs_container_name" {
+  description = "The name to give the container that is accessible via the load balancer, usually the same as the app name."
+}
+
+variable "ecs_container_port_number" {
+  description = "The port number of the container that is accessible via the load balancer."
+}
+
 # Optional variables
 variable "instance_ami" {
   default     = "ami-809f84e6"
