@@ -13,7 +13,8 @@ module "ecs" {
   aws_subnet_a_id    = "${var.aws_subnet_a_id}"
   aws_subnet_b_id    = "${var.aws_subnet_b_id}"
 
-  admin_cidr_ingress = "${var.admin_cidr_ingress}"
+  sg_ec2_instance_cidr = "${var.sg_ec2_instance_cidr}"
+  sg_loadbalancer_cidr = "${var.sg_loadbalancer_cidr}"
   key_name           = "${var.key_name}"
   app_name           = "${var.app_name}"
 

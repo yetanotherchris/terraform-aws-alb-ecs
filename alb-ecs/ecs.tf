@@ -3,6 +3,10 @@ resource "aws_ecs_cluster" "main" {
   name = "${var.ecs_cluster_name}"
 }
 
+resource "aws_ecr_repository" "docker_repository" {
+  name = "${var.app_name}"
+}
+
 data "template_file" "task_definition_template" {
   template = "${file("${path.module}/task-definition.json")}"
 

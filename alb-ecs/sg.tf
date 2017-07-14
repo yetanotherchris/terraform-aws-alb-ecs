@@ -1,10 +1,13 @@
 ### Security
 
 resource "aws_security_group" "lb_sg" {
-  description = "controls access to the application ELB"
-
-  vpc_id = "${var.aws_vpc_id}"
   name   = "${var.app_name}-loadbalancer"
+  vpc_id = "${var.aws_vpc_id}"
+  description = "Controls access to the ELB infront of ECS"
+
+  tags {
+    Name = "${var.app_name}-loadbalancer"
+  }
 
   ingress {
     protocol    = "tcp"
@@ -18,16 +21,18 @@ resource "aws_security_group" "lb_sg" {
     to_port   = 0
     protocol  = "-1"
 
-    cidr_blocks = [
-      "0.0.0.0/0",
-    ]
+    cidr_blocks = [ "0.0.0.0/0"]
   }
 }
 
 resource "aws_security_group" "instance_sg" {
-  description = "controls direct access to application instances"
+  name        = "${var.app_name}-ec2-instances"
   vpc_id      = "${var.aws_vpc_id}"
-  name        = "${var.app_name}-ec2instance"
+  description = "Controls direct access to the EC2 instances in the auto scaling group"
+
+  tags {
+    Name = "${var.app_name}-ec2instance"
+  }
 
   ingress {
     protocol  = "tcp"
@@ -35,7 +40,7 @@ resource "aws_security_group" "instance_sg" {
     to_port   = 22
 
     cidr_blocks = [
-      "${var.admin_cidr_ingress}",
+      "${var.sg_ec2_instance_cidr}",
     ]
   }
 

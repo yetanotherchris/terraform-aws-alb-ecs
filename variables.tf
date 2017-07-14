@@ -27,8 +27,12 @@ variable "aws_subnet_b_id" {
   description = ""
 }
 
-variable "admin_cidr_ingress" {
-  description = "CIDR to allow tcp/22 ingress to EC2 instance"
+variable "sg_loadbalancer_cidr" {
+  description = "CIDR to allow port 80 ingress traffic to the load balancer."
+}
+
+variable "sg_ec2_instance_cidr" {
+  description = "CIDR to allow tcp/22 ingress to the EC2 instances in the autoscaling group."
 }
 
 variable "key_name" {
