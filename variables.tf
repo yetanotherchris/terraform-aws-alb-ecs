@@ -1,9 +1,7 @@
-#
-# Required variables to pass into the alb-ecs module. These are
-# are duplicate variables from the module due to the way Terraform works.
-#
+# Required variables to pass into the alb-ecs module. 
+
+# These are are duplicate variables from the module due to the way Terraform works.
 # The values can be declared in a terraform.tfvars file.
-#
 
 variable "aws_access_key" {
   description = ""
@@ -60,3 +58,5 @@ variable "ecs_container_name" {
 variable "ecs_container_port_number" {
   description = "The port number of the container that is accessible via the load balancer."
 }
+
+# See the alb-ecs/variables.tf file for all the optional variables

@@ -60,17 +60,17 @@ variable "instance_type" {
   description = "AWS instance type"
 }
 
-variable "asg_min" {
+variable "autoscale_min" {
   description = "Min numbers of servers in ASG"
   default     = "1"
 }
 
-variable "asg_max" {
+variable "autoscale_max" {
   description = "Max numbers of servers in ASG"
   default     = "2"
 }
 
-variable "asg_desired" {
+variable "autoscale_desired" {
   description = "Desired numbers of servers in ASG"
   default     = "1"
 }
