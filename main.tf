@@ -19,12 +19,11 @@ module "ecs" {
   key_name           = "${var.key_name}"
   app_name           = "${var.app_name}"
   
-  #https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalancers:
   # Optional variables
   # instance_ami = ""
-  instance_type = "m4.large"
-  # asg_min = ""
-  # asg_max = ""
-  # asg_desired = ""
+  instance_type = "t2.nano"
+  asg_min = "3"
+  asg_max = "6"
+  asg_desired = "3"
   # admin_cidr_ingress = ""
 }

@@ -7,3 +7,6 @@
 
 # Your secret variables
 terraform.tfvars
+
+# Lock file
+.terraform.tfstate.lock.info

@@ -15,7 +15,7 @@
         "essential": true,
         "entryPoint": [],
         "mountPoints": [],
-        "memory": 256,
+        "memory": 600,
         "name": "postgres",
         "cpu": 128,
         "links": [],
@@ -50,9 +50,9 @@
             "postgres"
         ],
         "mountPoints": [],
-        "memory": 256,
+        "memory": 400,
         "name": "letmein",
-        "cpu": 128,
+        "cpu": 256,
         "image": "anotherchris/letmein",
         "portMappings": [
             {

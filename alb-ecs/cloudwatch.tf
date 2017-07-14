@@ -4,5 +4,5 @@ resource "aws_cloudwatch_log_group" "ecs" {
 }
 
 resource "aws_cloudwatch_log_group" "app" {
-  name = "${var.app_name}/${var.ecs_container_name}"
+  name = "${var.app_name}/docker-containers"
 }
