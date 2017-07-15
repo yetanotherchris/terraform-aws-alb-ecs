@@ -17,12 +17,14 @@ variable "aws_subnet_b_id" {
   description = "The second subnet id inside the VPC."
 }
 
-variable "sg_loadbalancer_cidr" {
+variable "sg_loadbalancer_cidrs" {
   description = "CIDR to allow port 80 ingress traffic to the load balancer."
+  type        = "list"
 }
 
-variable "sg_ec2_instance_cidr" {
+variable "sg_ec2_instance_cidrs" {
   description = "CIDR to allow tcp/22 ingress to the EC2 instances in the autoscaling group."
+  type        = "list"
 }
 
 variable "key_name" {
@@ -81,5 +83,5 @@ variable "autoscale_desired" {
 
 variable "ecs_task_definition_filepath" {
   description = "The path to the ECS task definition file created for the service. This can have tokens that are replaced."
-  default = "./task-definition.json"
+  default     = "./task-definition.json"
 }

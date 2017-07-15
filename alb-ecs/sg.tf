@@ -1,8 +1,8 @@
 ### Security
 
 resource "aws_security_group" "lb_sg" {
-  name   = "${var.app_name}-loadbalancer"
-  vpc_id = "${var.aws_vpc_id}"
+  name        = "${var.app_name}-loadbalancer"
+  vpc_id      = "${var.aws_vpc_id}"
   description = "Controls access to the ELB infront of ECS"
 
   tags {
@@ -13,7 +13,7 @@ resource "aws_security_group" "lb_sg" {
     protocol    = "tcp"
     from_port   = 80
     to_port     = 80
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = "${var.sg_loadbalancer_cidrs}"
   }
 
   egress {
@@ -21,7 +21,7 @@ resource "aws_security_group" "lb_sg" {
     to_port   = 0
     protocol  = "-1"
 
-    cidr_blocks = [ "0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -39,9 +39,7 @@ resource "aws_security_group" "instance_sg" {
     from_port = 22
     to_port   = 22
 
-    cidr_blocks = [
-      "${var.sg_ec2_instance_cidr}",
-    ]
+    cidr_blocks = "${var.sg_ec2_instance_cidrs}"
   }
 
   ingress {

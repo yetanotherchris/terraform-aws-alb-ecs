@@ -50,7 +50,7 @@
             "postgres"
         ],
         "mountPoints": [],
-        "memory": 300,
+        "memory": 200,
         "name": "letmein",
         "cpu": 256,
         "image": "anotherchris/letmein",

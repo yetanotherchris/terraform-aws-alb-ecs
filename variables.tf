@@ -27,12 +27,14 @@ variable "aws_subnet_b_id" {
   description = ""
 }
 
-variable "sg_loadbalancer_cidr" {
+variable "sg_loadbalancer_cidrs" {
   description = "CIDR to allow port 80 ingress traffic to the load balancer."
+  type        = "list"
 }
 
-variable "sg_ec2_instance_cidr" {
+variable "sg_ec2_instance_cidrs" {
   description = "CIDR to allow tcp/22 ingress to the EC2 instances in the autoscaling group."
+  type        = "list"
 }
 
 variable "key_name" {
@@ -64,3 +66,4 @@ variable "ecs_container_port_number" {
 }
 
 # See the alb-ecs/variables.tf file for all the optional variables
+
