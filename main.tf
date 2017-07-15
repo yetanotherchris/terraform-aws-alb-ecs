@@ -4,6 +4,14 @@ provider "aws" {
   region     = "${var.aws_region}"
 }
 
+output "docker_repository" {
+  value = "${module.ecs.repository}"
+}
+
+output "loadbalancer_url" {
+  value = "http://${module.ecs.loadbalancer_url}"
+}
+
 module "ecs" {
   source = "alb-ecs/"
 

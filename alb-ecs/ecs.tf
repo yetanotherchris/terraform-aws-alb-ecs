@@ -1,4 +1,8 @@
 ## ECS
+output "repository" {
+  value = "${aws_ecr_repository.docker_repository.repository_url}"
+}
+
 resource "aws_ecs_cluster" "main" {
   name = "${var.ecs_cluster_name}"
 }
@@ -8,7 +12,7 @@ resource "aws_ecr_repository" "docker_repository" {
 }
 
 data "template_file" "task_definition_template" {
-  template = "${file("${path.module}/task-definition.json")}"
+  template = "${file("${var.ecs_task_definition_filepath}")}"
 
   vars {
     image_url        = "${var.ecs_docker_image}"

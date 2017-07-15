@@ -78,3 +78,8 @@ variable "autoscale_desired" {
   description = "Desired numbers of servers in ASG"
   default     = "1"
 }
+
+variable "ecs_task_definition_filepath" {
+  description = "The path to the ECS task definition file created for the service. This can have tokens that are replaced."
+  default = "./task-definition.json"
+}

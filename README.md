@@ -12,4 +12,4 @@ https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalanc
 - https://www.terraform.io/docs/providers/aws/r/ecs_service.html
 - https://www.terraform.io/docs/providers/aws/r/ecr_repository.html
 - https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html
-
+- https://www.terraform.io/docs/providers/aws/r/alb.html
