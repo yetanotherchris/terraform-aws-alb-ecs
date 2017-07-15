@@ -1,7 +1,7 @@
 ## IAM
 
-resource "aws_iam_role" "ecs_service" {
-  name = "tf_example_ecs_role"
+resource "aws_iam_role" "ecs_service_role" {
+  name = "${var.app_name}-ecs-service-role"
 
   assume_role_policy = <<EOF
 {
@@ -20,9 +20,9 @@ resource "aws_iam_role" "ecs_service" {
 EOF
 }
 
-resource "aws_iam_role_policy" "ecs_service" {
-  name = "tf_example_ecs_policy"
-  role = "${aws_iam_role.ecs_service.name}"
+resource "aws_iam_role_policy" "ecs_service_policy" {
+  name = "${var.app_name}-ecs-service-policy"
+  role = "${aws_iam_role.ecs_service_role.name}"
 
   policy = <<EOF
 {
@@ -45,13 +45,13 @@ resource "aws_iam_role_policy" "ecs_service" {
 EOF
 }
 
-resource "aws_iam_instance_profile" "app" {
-  name = "tf-ecs-instprofile"
-  role = "${aws_iam_role.app_instance.name}"
+resource "aws_iam_instance_profile" "ec2_instance_profile" {
+  name = "${var.app_name}-ec2-instance"
+  role = "${aws_iam_role.ec2_instance_role.name}"
 }
 
-resource "aws_iam_role" "app_instance" {
-  name = "tf-ecs-example-instance-role"
+resource "aws_iam_role" "ec2_instance_role" {
+  name = "${var.app_name}-ec2-instance-role"
 
   assume_role_policy = <<EOF
 {
@@ -70,17 +70,17 @@ resource "aws_iam_role" "app_instance" {
 EOF
 }
 
-data "template_file" "instance_profile" {
+data "template_file" "ec2_instance_template" {
   template = "${file("${path.module}/instance-profile-policy.json")}"
 
   vars {
-    app_log_group_arn = "${aws_cloudwatch_log_group.app.arn}"
+    containers_log_group_arn = "${aws_cloudwatch_log_group.containers.arn}"
     ecs_log_group_arn = "${aws_cloudwatch_log_group.ecs.arn}"
   }
 }
 
-resource "aws_iam_role_policy" "instance" {
-  name   = "TfEcsExampleInstanceRole"
-  role   = "${aws_iam_role.app_instance.name}"
-  policy = "${data.template_file.instance_profile.rendered}"
+resource "aws_iam_role_policy" "ec2_instance_policy" {
+  name   = "${var.app_name}-instance-policy"
+  role   = "${aws_iam_role.ec2_instance_role.name}"
+  policy = "${data.template_file.ec2_instance_template.rendered}"
 }

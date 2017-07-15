@@ -24,13 +24,21 @@ https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalanc
 
 1. Install the awscli, on Windows: `choco install -y awscli`
 2. Tag and build your dockerfile, e.g. `docker build -t {docker_repository}/myimage" .
-3. Login to AWS: `aws configure` then `aws ecr get-login`
-4. Login with Docker using the output from the previous command.
+3. Configur AWS: `aws configure`
+4. Login to Docker, Powershell version: `iex $(aws ecr get-login).Replace("-e none","")` (AWS put an obselete -e in their command)
 5. Push the image: `docker push {docker_repository}/myimage`
+
+Unfortunately there is a bit of a chicken and egg with this terraform script, as you need a repository to push to first before ECR can launch that image. One solution is to put an existing image in the task-definition file as a placeholder, for example ["hello-world"](https://hub.docker.com/_/hello-world/).
 
 ## A note about security
 
 The security groups created allow access from everywhere to the load balancer, on port 80, and the EC2 instances, on port 22 - this is the CIDR blocks `0.0.0.0/0` in the variables. You should harden this to add your own IPs. There's a CIDR cheat sheet [here](https://gist.github.com/yetanotherchris/5a48a4f2c7f753450808af2d3524f8fc).
+
+## A similar note, but about permissions
+
+Two IAM roles are created, one for the ECS service, and one for the EC2 instances. Look at `Instance-profile-policy.json` for the EC2 instance, it is given permission to pull from any repository in your account's ECR, and remove container instances from any cluster.
+
+Similarly, the service role is given permissions on any load balancers (in `iam.tf`).
 
 ## Instance sizes and 502 gateway problems
 
