@@ -58,6 +58,36 @@ The Terraform `ecs.tf` file will replace one container name and image inside `ta
 
 ## What infrastructure does it create?
 
+This diagram misses out the autoscaling group and launch configuration.
+
+    +---------+    +-------------------------------------+
+    | ELB/ALB |    |  ALB Target Group                   |
+    +-+--+----+    | +---------------+  +--------------+ |
+      ^  |         | |EC2 Instance   |  | EC2 Instance +---->  +--------+
+      |  |         | +---------------+  +--------------+ |     |IAM role|
+      |  +---------> +---------------+  +--------------+ |     +--------+
+      |            | |EC2 Instance   |  | EC2 Instance | |
+      |            | +---------------+  +--------------+ |
+      |            +-------------------------------------+
+      |                                   
++-----+-----------------------------+     
+|  EC2 Container Service (ECS)      |     
+|                                   |     
+|    +-----------------------+      |
+|    | ECS (Docker) Registry +----------------------+
+|    +-----------------------+      |               |
+|    | Task Definition       |      |               |
+|    +-----------------------+      |               |
+|    |                       |      |               |
+|    | Cluster               |      |               |
+|    +-----------------------+      |               ^
+|    |  +---------+                 |            +--+------+
+|    +-->Service  +----------------------------->+IAM role |
+|       +---------+                 |            +---------+
+|                                   |
++-----------------------------------+
+
+
 ## Variables and customisations
 
 
@@ -69,3 +99,6 @@ The Terraform `ecs.tf` file will replace one container name and image inside `ta
 - https://www.terraform.io/docs/providers/aws/r/ecr_repository.html
 - https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html
 - https://www.terraform.io/docs/providers/aws/r/alb.html
+
+- https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html
+- https://www.terraform.io/docs/providers/aws/r/autoscaling_attachment.html

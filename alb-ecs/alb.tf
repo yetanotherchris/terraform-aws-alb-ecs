@@ -1,4 +1,7 @@
 ## ALB
+## The auto-scaling group is linked to the ALB via 
+# the ALB's target_group_arns property.
+
 output "loadbalancer_url" {
   value = "${aws_alb.alb.dns_name}"
 }

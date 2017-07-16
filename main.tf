@@ -34,7 +34,7 @@ module "ecs" {
 
   # Optional variables
   instance_type     = "t2.nano"
-  autoscale_min     = "3"
-  autoscale_max     = "6"
+  autoscale_min     = "2"
+  autoscale_max     = "4"
   autoscale_desired = "3"
 }

@@ -1,4 +1,5 @@
-### Compute
+# Autoscaling (ASG) and launch configuration
+
 resource "aws_autoscaling_group" "containers_asg" {
   name                 = "${var.app_name}-asg"
   vpc_zone_identifier  = ["${var.aws_subnet_a_id}"]
@@ -6,6 +7,7 @@ resource "aws_autoscaling_group" "containers_asg" {
   max_size             = "${var.autoscale_max}"
   desired_capacity     = "${var.autoscale_desired}"
   launch_configuration = "${aws_launch_configuration.containers_launchconfig.name}"
+  target_group_arns = ["${aws_alb_target_group.target_group.arn}"]
 }
 
 resource "aws_launch_configuration" "containers_launchconfig" {
