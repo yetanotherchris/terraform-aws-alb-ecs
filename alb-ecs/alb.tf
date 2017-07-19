@@ -11,12 +11,19 @@ resource "aws_alb_target_group" "target_group" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.aws_vpc_id}"
+
+  health_check {
+    port = "${var.ecs_container_port_number}",
+    unhealthy_threshold = 3
+  }
 }
 
 resource "aws_alb" "alb" {
   name            = "${var.app_name}"
   subnets         = ["${var.aws_subnet_a_id}", "${var.aws_subnet_b_id}"]
   security_groups = ["${aws_security_group.lb_sg.id}"]
+
+  idle_timeout = 3600
 }
 
 resource "aws_alb_listener" "listener" {

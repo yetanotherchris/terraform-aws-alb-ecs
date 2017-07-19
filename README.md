@@ -20,6 +20,12 @@ Have a look at the load balancer after setup:
 
 https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalancers:
 
+## Included task definition examples
+
+- Letmein (the default), an encrypted notebin service: https://github.com/yetanotherchris/letmein
+- Manet, a screenshot service: https://github.com/vbauer/manet
+- Ghost blog (from the original example)
+
 ## Pushing to the Docker repository in AWS (ECR)
 
 1. Install the awscli, on Windows: `choco install -y awscli`
@@ -60,6 +66,7 @@ The Terraform `ecs.tf` file will replace one container name and image inside `ta
 
 This diagram misses out the autoscaling group and launch configuration.
 
+```
     +---------+    +-------------------------------------+
     | ELB/ALB |    |  ALB Target Group                   |
     +-+--+----+    | +---------------+  +--------------+ |
@@ -86,6 +93,7 @@ This diagram misses out the autoscaling group and launch configuration.
 |       +---------+                 |            +---------+
 |                                   |
 +-----------------------------------+
+```
 
 
 ## Variables and customisations
@@ -100,5 +108,6 @@ This diagram misses out the autoscaling group and launch configuration.
 - https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html
 - https://www.terraform.io/docs/providers/aws/r/alb.html
 
+- https://www.terraform.io/docs/providers/aws/r/alb_target_group.html
 - https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html
 - https://www.terraform.io/docs/providers/aws/r/autoscaling_attachment.html

@@ -33,8 +33,9 @@ module "ecs" {
   ecs_container_port_number = "${var.ecs_container_port_number}"
 
   # Optional variables
-  instance_type     = "t2.nano"
-  autoscale_min     = "2"
-  autoscale_max     = "4"
+  instance_type     = "t2.medium"
+  autoscale_min     = "3"
+  autoscale_max     = "3"
   autoscale_desired = "3"
+  ecs_service_task_count = "3"
 }

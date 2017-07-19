@@ -66,4 +66,3 @@ variable "ecs_container_port_number" {
 }
 
 # See the alb-ecs/variables.tf file for all the optional variables
-

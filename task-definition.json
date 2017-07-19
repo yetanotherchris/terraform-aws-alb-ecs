@@ -1,20 +1,29 @@
 [
     {
         "volumesFrom": [],
-        "entryPoint": ["phantomjs"],
-        "command": ["--webdriver=8910","--ignore-ssl-errors=true","--web-security=no","--ssl-protocol=any"],
-        "environment": [],
+        "command": [],
+        "environment": [
+            {
+                "Name": "POSTGRES_USER",
+                "Value": "letmein"
+            },
+            {
+                "Name": "POSTGRES_PASSWORD",
+                "Value": "letmein123"
+            }
+        ],
         "essential": true,
+        "entryPoint": [],
         "mountPoints": [],
         "memory": 200,
-        "name": "phantomjs",
-        "cpu": 256,
+        "name": "postgres",
+        "cpu": 128,
         "links": [],
-        "image": "wernight/phantomjs",
+        "image": "postgres",
         "portMappings": [
             {
-                "hostPort": 8910,
-                "containerPort": 8910
+                "hostPort": 5432,
+                "containerPort": 5432
             }
         ],
         "logConfiguration": {
@@ -22,37 +31,33 @@
             "options": {
                 "awslogs-group": "${log_group_name}",
                 "awslogs-region": "${log_group_region}",
-                "awslogs-stream-prefix" : "phantomjs-"
+                "awslogs-stream-prefix" : "postgres-"
             }
         }
     },
     {
         "volumesFrom": [],
-        "entryPoint": [],
         "command": [],
         "environment": [
             {
-                "Name": "PHANTOMJS_SERVER",
-                "Value": "http://phantomjs:8910"
-            },
-            {
-                "Name": "ADVERT_SERVER",
-                "Value": "https://www.totaljobs.com/job/adverts/facebook/{jobId}-job"
+                "Name": "POSTGRES_CONNECTIONSTRING",
+                "Value": "host=postgres;database=letmein;password=letmein123;username=letmein"
             }
         ],
         "essential": true,
+        "entryPoint": [],
         "links": [
-            "phantomjs"
+            "postgres"
         ],
         "mountPoints": [],
         "memory": 200,
-        "name": "facebook",
+        "name": "letmein",
         "cpu": 256,
-        "image": "122354889617.dkr.ecr.eu-west-1.amazonaws.com/facebook",
+        "image": "anotherchris/letmein",
         "portMappings": [
             {
-                "hostPort": 8080,
-                "containerPort": 8080
+                "hostPort": 5000,
+                "containerPort": 5000
             }
         ],
         "logConfiguration": {
@@ -60,7 +65,7 @@
             "options": {
                 "awslogs-group": "${log_group_name}",
                 "awslogs-region": "${log_group_region}",
-                "awslogs-stream-prefix" : "facebook-"
+                "awslogs-stream-prefix" : "letmein-"
             }
         }
     }

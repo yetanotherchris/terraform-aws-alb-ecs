@@ -85,3 +85,8 @@ variable "ecs_task_definition_filepath" {
   description = "The path to the ECS task definition file created for the service. This can have tokens that are replaced."
   default     = "./task-definition.json"
 }
+
+variable "ecs_service_task_count" {
+  description = "The number of tasks to create in the ECS service. Default is 1"
+  default = "1"
+}
