@@ -23,7 +23,7 @@ https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalanc
 ## Included task definition examples
 
 - Letmein (the default), an encrypted notebin service: https://github.com/yetanotherchris/letmein
-- Manet, a screenshot service: https://github.com/vbauer/manet
+- Manet, a screenshot service: https://github.com/bobey/docker-manet
 - Ghost blog (from the original example)
 
 ## Pushing to the Docker repository in AWS (ECR)
