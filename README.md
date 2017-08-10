@@ -64,7 +64,7 @@ The Terraform `ecs.tf` file will replace one container name and image inside `ta
 
 ## What infrastructure does it create?
 
-This diagram misses out the autoscaling group and launch configuration.
+The ALB, Target Group and Autoscaling look complicated because AWS makes it complicated.
 
 ```
     +---------+    +-------------------------------------+
@@ -89,7 +89,7 @@ This diagram misses out the autoscaling group and launch configuration.
 |    | Cluster               |      |               |
 |    +-----------------------+      |               ^
 |    |  +---------+                 |            +--+------+
-|    +-->Ser^ice  +-----------------------------^+IAM role |
+|    +-->Service  +-----------------------------^+IAM role |
 |       +---------+                 |            +---------+
 |                                   |
 +-----------------------------------+
