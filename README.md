@@ -29,7 +29,7 @@ https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalanc
 ## Pushing to the Docker repository in AWS (ECR)
 
 1. Install the awscli, on Windows: `choco install -y awscli`
-2. Tag and build your dockerfile, e.g. `docker build -t {docker_repository}/myimage" .
+2. Tag and build your dockerfile, e.g. `docker build -t {docker_repository}/myimage .`
 3. Configur AWS: `aws configure`
 4. Login to Docker, Powershell version: `iex $(aws ecr get-login).Replace("-e none","")` (AWS put an obselete -e in their command)
 5. Push the image: `docker push {docker_repository}/myimage`
